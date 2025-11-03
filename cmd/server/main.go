@@ -1,25 +1,16 @@
 package main
 
 import (
-	"fmt"
 	"net/http"
 
-	"github.com/sergioc0sta/go-cloud-run/configs"
+	"github.com/sergioc0sta/go-cloud-run/internal/infra/handlers"
 )
 
 func main() {
-
-	configs, err := configs.LoadConfig(".")
-	if err != nil {
-		panic(err)
-	}
-
 	mux := http.NewServeMux()
 
-	mux.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Printf("The WeatherAPI %s \n", configs.WeatherAPI)
-		w.Write([]byte("ok"))
-	})
+	mux.HandleFunc("/health", handlers.HealthHandler)
+	mux.HandleFunc("/", handlers.WeatherHandler)
 
 	http.ListenAndServe(":8081", mux)
 }

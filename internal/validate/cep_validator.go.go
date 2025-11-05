@@ -3,12 +3,12 @@ package validate
 import "strconv"
 
 func CepValidator(cep string) bool {
-	if len(cep) != 9 {
+	if len(cep) != 8 {
 		return false
 	}
 
 	zone, errr := strconv.Atoi(cep[:5])
-	suffix, err := strconv.Atoi(cep[6:])
+	suffix, err := strconv.Atoi(cep[5:])
 
 	if err != nil || errr != nil {
 		return false

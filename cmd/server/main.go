@@ -10,7 +10,7 @@ func main() {
 	mux := http.NewServeMux()
 
 	mux.HandleFunc("/health", handlers.HealthHandler)
-	mux.HandleFunc("/", handlers.WeatherHandler)
+	mux.HandleFunc("/a", handlers.WeatherHandler)
 
 	http.ListenAndServe(":8081", mux)
 }

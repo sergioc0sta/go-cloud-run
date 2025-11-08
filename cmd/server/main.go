@@ -2,7 +2,7 @@ package main
 
 import (
 	"net/http"
-	"fmt"
+	"log"
 
 	"github.com/sergioc0sta/go-cloud-run/configs"
 	"github.com/sergioc0sta/go-cloud-run/internal/infra/handlers"
@@ -21,6 +21,6 @@ func main() {
 	mux.HandleFunc("/health", handlers.HealthHandler)
 	mux.HandleFunc("/temp", handlers.WeatherHandler(temperatureClient))
 
-	http.ListenAndServe(":8081", mux)
-	fmt.Println("Server running on port 8081")
+	log.Println("Server is running on 8080 port...")
+	http.ListenAndServe(":8080", mux)
 }

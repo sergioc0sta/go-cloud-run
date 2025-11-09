@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	cfg, _ := configs.LoadConfig(".")
+	cfg, _ := configs.LoadConfig("../..")
 
 	viaCepAPI := cfg.ViaCepAPI
 	tempAPI := cfg.WeatherAPI

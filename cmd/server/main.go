@@ -1,22 +1,22 @@
 package main
 
 import (
-	"net/http"
 	"log"
+	"net/http"
 
-	"github.com/sergioc0sta/go-cloud-run/configs"
 	"github.com/sergioc0sta/go-cloud-run/internal/infra/handlers"
 	"github.com/sergioc0sta/go-cloud-run/internal/infra/temperature"
 )
 
-func main() {
-	cfg, _ := configs.LoadConfig("../..")
+const (
+	viaCepAPI = "http://viacep.com.br/ws/"
+	tempAPI   = "https://api.hgbrasil.com/weather?format=json-cors&city_name="
+)
 
-	viaCepAPI := cfg.ViaCepAPI
-	tempAPI := cfg.WeatherAPI
+func main() {
 
 	mux := http.NewServeMux()
-	temperatureClient := temperature.NewTemperatureClient(viaCepAPI, tempAPI) 
+	temperatureClient := temperature.NewTemperatureClient(viaCepAPI, tempAPI)
 
 	mux.HandleFunc("/health", handlers.HealthHandler)
 	mux.HandleFunc("/temp", handlers.WeatherHandler(temperatureClient))

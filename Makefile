@@ -1,7 +1,10 @@
 build-dev-image:
 	docker build -t go-cloud -f Dockerfile .	
 
-run-dev-container:
+build-prod-image:
+	docker build -t go-cloud -f Dockerfile.prod .	
+
+run-container:
 	docker run -d -p 8080:8080 --name go-cloud-app go-cloud
 
 run-access-container:
